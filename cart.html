@@ -494,6 +494,7 @@ p { margin: 0; }
 .cart-line__thumb { width: 72px; height: 72px; flex: 0 0 auto; border-radius: 10px; background: var(--ns-surface); border: 1px solid var(--ns-line); display: flex; align-items: center; justify-content: center; }
 .cart-line__name { font-family: var(--ns-font-display); font-weight: 700; font-size: 16.5px; line-height: 1.3; color: var(--ns-navy); }
 .cart-line__text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.cart-line__unit { font-size: 13px; color: var(--ns-muted); }
 .cart-line__price, .cart-line__total { text-align: right; font-size: 15px; }
 .cart-line__total { font-weight: 700; color: var(--ns-ink); }
 .cart-line__qty { display: flex; justify-content: center; }
@@ -687,10 +688,11 @@ p { margin: 0; }
           <div class="cart__head" aria-hidden="true"><span>Product</span><span>Unit price</span><span>Quantity</span><span>Total</span><span></span></div>
 
           <div class="cart__items">
+            <!-- GreeneStep: "Unit" shows the item's unit of measure from the store (e.g. the roll size for tape). -->
             <div class="cart-line">
               <div class="cart-line__product">
                 <div class="cart-line__thumb"><svg width="48" height="48" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="#2C63C6"/><circle cx="60" cy="60" r="28" fill="#EFE2C8"/><circle cx="60" cy="60" r="22" fill="#F4F6F9"/></svg></div>
-                <div class="cart-line__text"><a class="cart-line__name" href="product.html?code=1187-054">3M 2090 Blue Masking Tape</a><span class="ns-mono">ITEM 1187-054</span><span class="ns-stock ns-stock--in">In stock</span></div>
+                <div class="cart-line__text"><a class="cart-line__name" href="product.html?code=1187-054">3M 2090 Blue Masking Tape</a><span class="ns-mono">ITEM 1187-054</span><span class="cart-line__unit">Unit: [Unit of measure]</span><span class="ns-stock ns-stock--in">In stock</span></div>
               </div>
               <div class="cart-line__price">[$0.00]</div>
               <div class="cart-line__qty">
@@ -706,7 +708,7 @@ p { margin: 0; }
             <div class="cart-line">
               <div class="cart-line__product">
                 <div class="cart-line__thumb"><svg width="48" height="48" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="#DCE3EC"/><circle cx="60" cy="60" r="28" fill="#EFE2C8"/><circle cx="60" cy="60" r="22" fill="#F4F6F9"/></svg></div>
-                <div class="cart-line__text"><a class="cart-line__name" href="product.html?code=1187-001">Scotch #665 Double-Sided Tape</a><span class="ns-mono">ITEM 1187-001</span><span class="ns-stock ns-stock--in">In stock</span></div>
+                <div class="cart-line__text"><a class="cart-line__name" href="product.html?code=1187-001">Scotch #665 Double-Sided Tape</a><span class="ns-mono">ITEM 1187-001</span><span class="cart-line__unit">Unit: [Unit of measure]</span><span class="ns-stock ns-stock--in">In stock</span></div>
               </div>
               <div class="cart-line__price">[$0.00]</div>
               <div class="cart-line__qty">
