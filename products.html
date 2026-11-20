@@ -235,6 +235,8 @@ p { margin: 0; }
 .ns-account-nav .ns-btn--sm { font-family: var(--ns-font-body); font-weight: 600; }
 .ns-cart-btn { background: var(--ns-navy); color: #fff; border: 0; }
 .ns-cart-btn:hover { background: var(--ns-navy-900); color: #fff; }
+.ns-cart-btn__total { margin-left: 2px; padding-left: 10px; border-left: 1px solid rgba(255,255,255,.3); font-weight: 600; }
+@media (max-width: 720px) { .ns-cart-btn__total { display: none; } }
 
 /* Mini cart (header) */
 .ns-minicart { position: relative; }
@@ -494,6 +496,7 @@ p { margin: 0; }
 .cart-line__thumb { width: 72px; height: 72px; flex: 0 0 auto; border-radius: 10px; background: var(--ns-surface); border: 1px solid var(--ns-line); display: flex; align-items: center; justify-content: center; }
 .cart-line__name { font-family: var(--ns-font-display); font-weight: 700; font-size: 16.5px; line-height: 1.3; color: var(--ns-navy); }
 .cart-line__text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.cart-line__unit { font-size: 13px; color: var(--ns-muted); }
 .cart-line__price, .cart-line__total { text-align: right; font-size: 15px; }
 .cart-line__total { font-weight: 700; color: var(--ns-ink); }
 .cart-line__qty { display: flex; justify-content: center; }
@@ -559,6 +562,36 @@ p { margin: 0; }
 .choice__body strong { color: var(--ns-ink); font-weight: 600; }
 .address { font-style: normal; line-height: 1.6; font-size: 15px; color: var(--ns-ink-2); }
 
+/* Checkout: order lines and saved ship-to addresses (matched to the live checkout, Nov 20) */
+.co-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.co-head .ns-legend { width: auto; }
+.co-lines { width: 100%; border-collapse: collapse; font-size: 15px; }
+.co-lines th { text-align: left; font-size: 13px; font-weight: 600; color: var(--ns-muted); text-transform: uppercase; letter-spacing: .6px; padding: 0 10px 10px; border-bottom: 1px solid var(--ns-line); white-space: nowrap; }
+.co-lines td { padding: 14px 10px; border-bottom: 1px solid var(--ns-line-soft); vertical-align: top; }
+.co-lines th:first-child, .co-lines td:first-child { padding-left: 0; }
+.co-lines th:last-child, .co-lines td:last-child { padding-right: 0; }
+.co-lines .num { text-align: right; white-space: nowrap; }
+.co-lines td.num { font-weight: 600; }
+.co-lines .unit { color: var(--ns-muted); font-weight: 500; }
+.co-lines__item { display: flex; flex-direction: column; gap: 4px; }
+.co-lines__item a { font-weight: 600; }
+.shipto-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: 12px; }
+.shipto { display: flex; flex-direction: column; }
+.shipto .choice { flex: 1; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.shipto__actions { display: flex; gap: 18px; padding: 8px 18px; border: 1.5px solid var(--ns-line-strong); border-top: 0; border-radius: 0 0 var(--ns-radius-sm) var(--ns-radius-sm); font-size: 14.5px; font-weight: 600; }
+.shipto:has(input:checked) .shipto__actions { border-color: var(--ns-navy); }
+.shipto__actions .shipto__delete { color: var(--ns-error); }
+.shipto-add { align-self: flex-start; margin-top: 14px; }
+@media (max-width: 560px) {
+  .co-lines thead { display: none; }
+  .co-lines, .co-lines tbody, .co-lines tr, .co-lines td { display: block; }
+  .co-lines tr { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; padding: 14px 0; border-bottom: 1px solid var(--ns-line); }
+  .co-lines td { padding: 0; border: 0; }
+  .co-lines td.co-lines__item { grid-column: 1 / -1; display: flex; }
+  .co-lines .num { text-align: left; }
+  .co-lines td[data-label]::before { content: attr(data-label) ": "; color: var(--ns-muted); font-weight: 400; }
+}
+
 @media (max-width: 1100px) {
   .checkout { grid-template-columns: 1fr; }
 }
@@ -572,12 +605,48 @@ p { margin: 0; }
 .shop-section.shop-section--related { margin-top: 72px; }
 .summary__rows.summary__rows--divided { padding-top: 14px; border-top: 1px solid var(--ns-line); }
 .shop-wish.ns-text-sm, .ns-link-arrow.ns-text-sm { font-size: 14.5px; }
+
+/* Quick order */
+.qo { padding-bottom: 88px; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.qo__card { padding: 28px; display: flex; flex-direction: column; gap: 18px; }
+.qo__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.qo-table { width: 100%; border-collapse: collapse; }
+.qo-table th { text-align: left; font-size: 13px; font-weight: 600; color: var(--ns-muted); text-transform: uppercase; letter-spacing: .6px; padding: 0 8px 10px; border-bottom: 1px solid var(--ns-line); }
+.qo-table td { padding: 8px; border-bottom: 1px solid var(--ns-line-soft); vertical-align: middle; }
+.qo-table th:first-child, .qo-table td:first-child { padding-left: 0; }
+.qo-n { width: 32px; color: var(--ns-muted); font-weight: 600; }
+.qo-qty { width: 110px; }
+.qo-status { font-size: 14px; font-weight: 600; min-width: 120px; }
+.qo-status.is-ok { color: var(--ns-success); }
+.qo-status.is-error { color: var(--ns-error); }
+.qo__foot { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; padding-top: 18px; }
+.qo__aside { padding: 28px; display: flex; flex-direction: column; gap: 16px; }
+.qo__tips { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px; color: var(--ns-ink-2); font-size: 15px; }
+@media (max-width: 900px) { .qo { grid-template-columns: 1fr; } }
+@media (max-width: 560px) {
+  .qo { padding-bottom: 56px; }
+  .qo__card { padding: 20px; }
+  .qo-table thead { display: none; }
+  .qo-table, .qo-table tbody, .qo-table tr, .qo-table td { display: block; }
+  .qo-table tr { display: grid; grid-template-columns: 28px minmax(0, 1fr) 90px; gap: 8px; padding: 12px 0; border-bottom: 1px solid var(--ns-line-soft); align-items: center; }
+  .qo-table td { padding: 0; border: 0; }
+  .qo-table td.qo-status { grid-column: 2 / -1; min-width: 0; }
+  .qo-table td.qo-status:empty { display: none; }
+  .qo-qty { width: 100%; }
+  .qo__foot .ns-btn { width: 100%; }
+}
+
+/* Order confirmation (after checkout) */
+.confirm { padding-bottom: 88px; display: flex; flex-direction: column; gap: 24px; }
+.confirm .ns-mono { white-space: nowrap; }
+.confirm .steps { margin-bottom: 0; }
 </style>
 </head>
 <body data-page="products" data-category="TAPE">
 <!-- ===================== SITE HEADER (shared on every page) =====================
      GreeneStep: this block belongs in the master page.
-     - Cart button: replace the count in "Cart (0)" and the aria-label with the live cart quantity.
+     - Cart button: replace the count in "Cart (0)", the total ($0.00) and the aria-label with the live
+       cart quantity and amount (the live header shows both: "Cart: (0)" and "$0.00").
      - Account button: when the customer is signed in, swap the "Sign in" link for
        <a class="ns-btn ns-btn--ghost ns-btn--sm" href="account.html">[user icon]<span class="ns-btn__label">My account</span></a>
      - Search form: searchType = products | cert | sds (matches the live site's
@@ -624,7 +693,7 @@ p { margin: 0; }
            [data-minicart-total]. Show [data-minicart-empty] instead of [data-minicart-full] when the cart is empty.
            Without JavaScript the button's cart.html link still works. -->
       <div class="ns-minicart" data-minicart>
-        <a class="ns-btn ns-btn--sm ns-cart-btn" href="cart.html" aria-label="Cart, 0 items" aria-expanded="false" aria-controls="ns-minicart-panel" data-minicart-toggle><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM18 18.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"></path></svg><span>Cart (<span data-minicart-count>0</span>)</span></a>
+        <a class="ns-btn ns-btn--sm ns-cart-btn" href="cart.html" aria-label="Cart, 0 items, $0.00" aria-expanded="false" aria-controls="ns-minicart-panel" data-minicart-toggle><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM18 18.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"></path></svg><span>Cart (<span data-minicart-count>0</span>)</span><span class="ns-cart-btn__total" data-minicart-amount>$0.00</span></a>
         <div class="ns-minicart__panel" id="ns-minicart-panel" role="dialog" aria-label="Cart" hidden>
           <div class="ns-minicart__head"><strong>Your cart</strong><button type="button" class="ns-minicart__close" aria-label="Close cart" data-minicart-close><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></button></div>
           <div data-minicart-empty>
@@ -844,7 +913,8 @@ p { margin: 0; }
       box.querySelector('[data-minicart-empty]').hidden = true;
       box.querySelector('[data-minicart-full]').hidden = false;
       box.querySelector('[data-minicart-count]').textContent = '6';
-      toggle.setAttribute('aria-label', 'Cart, 6 items');
+      box.querySelector('[data-minicart-amount]').textContent = '[$0.00]';
+      toggle.setAttribute('aria-label', 'Cart, 6 items, [$0.00]');
     }
     if (mode) set(true);
   }

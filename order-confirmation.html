@@ -235,6 +235,8 @@ p { margin: 0; }
 .ns-account-nav .ns-btn--sm { font-family: var(--ns-font-body); font-weight: 600; }
 .ns-cart-btn { background: var(--ns-navy); color: #fff; border: 0; }
 .ns-cart-btn:hover { background: var(--ns-navy-900); color: #fff; }
+.ns-cart-btn__total { margin-left: 2px; padding-left: 10px; border-left: 1px solid rgba(255,255,255,.3); font-weight: 600; }
+@media (max-width: 720px) { .ns-cart-btn__total { display: none; } }
 
 /* Mini cart (header) */
 .ns-minicart { position: relative; }
@@ -526,6 +528,39 @@ p { margin: 0; }
 .rtable td { padding: 12px 14px; border-bottom: 1px solid var(--ns-line-soft); white-space: nowrap; }
 .rtable tbody tr:last-child td { border-bottom: 0; }
 .rtable .num { text-align: right; }
+
+/* Re-order list */
+.rl-pick { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: flex-end; justify-content: space-between; }
+.rl-pick .ns-field { flex: 0 1 320px; }
+.rl-count { font-size: 14px; color: var(--ns-muted); }
+.rl-item { display: flex; gap: 12px; align-items: center; }
+.rl-item__thumb { width: 52px; height: 52px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; background: var(--ns-surface); border: 1px solid var(--ns-line); border-radius: 8px; }
+.rl-code { display: block; margin-top: 2px; font-size: 12.5px; color: var(--ns-muted); }
+.rl-sub { display: block; color: var(--ns-muted); font-size: 13.5px; }
+.rl-avail { display: flex; justify-content: flex-end; margin-top: 4px; font-size: 12.5px; }
+.rl-qty input { width: 72px; height: 42px; padding: 8px 10px; }
+.rl-table { font-size: 14.5px; }
+.rl-table td { vertical-align: top; }
+.rl-table th { white-space: normal; vertical-align: bottom; font-size: 12px; letter-spacing: .4px; }
+.rl-table .dtable__first { min-width: 230px; }
+.rl-table td.rl-qty { padding-right: 0; }
+.rl-foot { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+.rl-avail { white-space: nowrap; }
+@media (max-width: 1180px) {
+  .rl-table thead { display: none; }
+  .rl-table, .rl-table tbody, .rl-table tr, .rl-table td { display: block; }
+  .rl-table tr { padding: 16px 0; border-bottom: 1px solid var(--ns-line); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 16px; }
+  .rl-table td { padding: 0; border: 0; }
+  .rl-table td[data-label]::before { content: attr(data-label) ": "; color: var(--ns-muted); font-weight: 400; }
+  .rl-table .num { text-align: left; }
+  .rl-table td.dtable__first { grid-column: 1 / -1; margin-bottom: 4px; }
+  .rl-avail { justify-content: flex-start; }
+  .rl-sub { display: inline; margin-left: 6px; }
+  .rl-table td.rl-qty { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; }
+}
+@media (max-width: 560px) {
+  .rl-table tr { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 </style>
 <style>
 /* Shopping pages: Category, Product Listing, Product Info, Cart, Checkout.
@@ -788,7 +823,8 @@ p { margin: 0; }
 <body data-page="checkout" data-signed-in>
 <!-- ===================== SITE HEADER (shared on every page) =====================
      GreeneStep: this block belongs in the master page.
-     - Cart button: replace the count in "Cart (0)" and the aria-label with the live cart quantity.
+     - Cart button: replace the count in "Cart (0)", the total ($0.00) and the aria-label with the live
+       cart quantity and amount (the live header shows both: "Cart: (0)" and "$0.00").
      - Account button: when the customer is signed in, swap the "Sign in" link for
        <a class="ns-btn ns-btn--ghost ns-btn--sm" href="account.html">[user icon]<span class="ns-btn__label">My account</span></a>
      - Search form: searchType = products | cert | sds (matches the live site's
@@ -835,7 +871,7 @@ p { margin: 0; }
            [data-minicart-total]. Show [data-minicart-empty] instead of [data-minicart-full] when the cart is empty.
            Without JavaScript the button's cart.html link still works. -->
       <div class="ns-minicart" data-minicart>
-        <a class="ns-btn ns-btn--sm ns-cart-btn" href="cart.html" aria-label="Cart, 0 items" aria-expanded="false" aria-controls="ns-minicart-panel" data-minicart-toggle><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM18 18.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"></path></svg><span>Cart (<span data-minicart-count>0</span>)</span></a>
+        <a class="ns-btn ns-btn--sm ns-cart-btn" href="cart.html" aria-label="Cart, 0 items, $0.00" aria-expanded="false" aria-controls="ns-minicart-panel" data-minicart-toggle><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM18 18.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"></path></svg><span>Cart (<span data-minicart-count>0</span>)</span><span class="ns-cart-btn__total" data-minicart-amount>$0.00</span></a>
         <div class="ns-minicart__panel" id="ns-minicart-panel" role="dialog" aria-label="Cart" hidden>
           <div class="ns-minicart__head"><strong>Your cart</strong><button type="button" class="ns-minicart__close" aria-label="Close cart" data-minicart-close><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></button></div>
           <div data-minicart-empty>
@@ -1052,7 +1088,8 @@ p { margin: 0; }
       box.querySelector('[data-minicart-empty]').hidden = true;
       box.querySelector('[data-minicart-full]').hidden = false;
       box.querySelector('[data-minicart-count]').textContent = '6';
-      toggle.setAttribute('aria-label', 'Cart, 6 items');
+      box.querySelector('[data-minicart-amount]').textContent = '[$0.00]';
+      toggle.setAttribute('aria-label', 'Cart, 6 items, [$0.00]');
     }
     if (mode) set(true);
   }

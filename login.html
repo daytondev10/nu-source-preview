@@ -235,6 +235,8 @@ p { margin: 0; }
 .ns-account-nav .ns-btn--sm { font-family: var(--ns-font-body); font-weight: 600; }
 .ns-cart-btn { background: var(--ns-navy); color: #fff; border: 0; }
 .ns-cart-btn:hover { background: var(--ns-navy-900); color: #fff; }
+.ns-cart-btn__total { margin-left: 2px; padding-left: 10px; border-left: 1px solid rgba(255,255,255,.3); font-weight: 600; }
+@media (max-width: 720px) { .ns-cart-btn__total { display: none; } }
 
 /* Mini cart (header) */
 .ns-minicart { position: relative; }
@@ -415,12 +417,20 @@ p { margin: 0; }
   .auth__grid--register { grid-template-columns: 1fr; }
   .auth__grid--register .auth__aside { position: static; }
 }
+
+/* Messages page */
+.msg-card { max-width: 640px; align-items: flex-start; }
+.msg-card__icon { width: 48px; height: 48px; border-radius: 24px; display: grid; place-items: center; background: var(--ns-success-bg); color: var(--ns-success); }
+.msg-card__icon--warn { background: #FFF6E5; color: #8A5A00; }
+.msg-card__text { font-size: 18px; line-height: 1.6; color: var(--ns-ink); }
+.msg-card__help { font-size: 14.5px; color: var(--ns-muted); padding-top: 18px; border-top: 1px solid var(--ns-line); width: 100%; }
 </style>
 </head>
 <body data-page="login">
 <!-- ===================== SITE HEADER (shared on every page) =====================
      GreeneStep: this block belongs in the master page.
-     - Cart button: replace the count in "Cart (0)" and the aria-label with the live cart quantity.
+     - Cart button: replace the count in "Cart (0)", the total ($0.00) and the aria-label with the live
+       cart quantity and amount (the live header shows both: "Cart: (0)" and "$0.00").
      - Account button: when the customer is signed in, swap the "Sign in" link for
        <a class="ns-btn ns-btn--ghost ns-btn--sm" href="account.html">[user icon]<span class="ns-btn__label">My account</span></a>
      - Search form: searchType = products | cert | sds (matches the live site's
@@ -467,7 +477,7 @@ p { margin: 0; }
            [data-minicart-total]. Show [data-minicart-empty] instead of [data-minicart-full] when the cart is empty.
            Without JavaScript the button's cart.html link still works. -->
       <div class="ns-minicart" data-minicart>
-        <a class="ns-btn ns-btn--sm ns-cart-btn" href="cart.html" aria-label="Cart, 0 items" aria-expanded="false" aria-controls="ns-minicart-panel" data-minicart-toggle><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM18 18.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"></path></svg><span>Cart (<span data-minicart-count>0</span>)</span></a>
+        <a class="ns-btn ns-btn--sm ns-cart-btn" href="cart.html" aria-label="Cart, 0 items, $0.00" aria-expanded="false" aria-controls="ns-minicart-panel" data-minicart-toggle><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM18 18.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"></path></svg><span>Cart (<span data-minicart-count>0</span>)</span><span class="ns-cart-btn__total" data-minicart-amount>$0.00</span></a>
         <div class="ns-minicart__panel" id="ns-minicart-panel" role="dialog" aria-label="Cart" hidden>
           <div class="ns-minicart__head"><strong>Your cart</strong><button type="button" class="ns-minicart__close" aria-label="Close cart" data-minicart-close><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></button></div>
           <div data-minicart-empty>
@@ -684,7 +694,8 @@ p { margin: 0; }
       box.querySelector('[data-minicart-empty]').hidden = true;
       box.querySelector('[data-minicart-full]').hidden = false;
       box.querySelector('[data-minicart-count]').textContent = '6';
-      toggle.setAttribute('aria-label', 'Cart, 6 items');
+      box.querySelector('[data-minicart-amount]').textContent = '[$0.00]';
+      toggle.setAttribute('aria-label', 'Cart, 6 items, [$0.00]');
     }
     if (mode) set(true);
   }
