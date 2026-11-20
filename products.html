@@ -418,9 +418,6 @@ p { margin: 0; }
 .shop-toolbar__sort .ns-select { height: 44px; width: auto; min-width: 210px; font-size: 15px; }
 
 .shop-card-actions { display: flex; flex-direction: column; gap: 8px; }
-.shop-wish { display: inline-flex; align-items: center; gap: 6px; background: none; border: 0; padding: 0; min-height: 32px; font-family: var(--ns-font-body); font-weight: 600; font-size: 13.5px; color: var(--ns-navy); cursor: pointer; }
-.shop-wish:hover { color: var(--ns-red); }
-.shop-wish[aria-pressed="true"] svg { fill: var(--ns-red); stroke: var(--ns-red); }
 .shop-price-note { font-size: 13.5px; font-weight: 600; color: var(--ns-ink-2); }
 
 .shop-empty { padding: 40px; text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center; }
@@ -604,7 +601,7 @@ p { margin: 0; }
 .shop-stack { display: flex; flex-direction: column; gap: 10px; }
 .shop-section.shop-section--related { margin-top: 72px; }
 .summary__rows.summary__rows--divided { padding-top: 14px; border-top: 1px solid var(--ns-line); }
-.shop-wish.ns-text-sm, .ns-link-arrow.ns-text-sm { font-size: 14.5px; }
+.ns-link-arrow.ns-text-sm { font-size: 14.5px; }
 
 /* Quick order */
 .qo { padding-bottom: 88px; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 24px; align-items: start; }
@@ -781,24 +778,20 @@ p { margin: 0; }
         </div>
 
         <div class="ns-prodgrid" data-results>
-          <!-- GreeneStep: one card per product. Wish list button: toggle aria-pressed and save to the
-               customer's wish list (signed-out shoppers go to login.html). -->
+          <!-- GreeneStep: one card per product. -->
           <div class="ns-card ns-prodcard">
             <div class="ns-prodcard__media"><svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="#E6E9EE"/><circle cx="60" cy="60" r="46" fill="none" stroke="#000" stroke-opacity=".12" stroke-width="2"/><circle cx="60" cy="60" r="28" fill="#EFE2C8"/><circle cx="60" cy="60" r="22" fill="#F4F6F9"/></svg></div>
             <div class="ns-prodcard__body"><span class="ns-mono">ITEM 010-008</span><a class="ns-prodcard__name" href="product.html?code=010-008">TransferRite 6582 Tape</a><span class="ns-muted ns-prodcard__meta">Masking Tapes</span>
-              <button type="button" class="shop-wish" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-9.2-8.6C1.2 8.3 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2 3.6 0 5.4 3.8 3.8 6.9C19 15.6 12 20 12 20z"/></svg>Add to wish list</button>
               <div class="ns-prodcard__foot"><span class="ns-stock ns-stock--in">In stock</span><a href="login.html">Sign in for pricing</a></div></div>
           </div>
           <div class="ns-card ns-prodcard">
             <div class="ns-prodcard__media"><svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="#DCE3EC"/><circle cx="60" cy="60" r="46" fill="none" stroke="#000" stroke-opacity=".12" stroke-width="2"/><circle cx="60" cy="60" r="28" fill="#EFE2C8"/><circle cx="60" cy="60" r="22" fill="#F4F6F9"/></svg></div>
             <div class="ns-prodcard__body"><span class="ns-mono">ITEM 1187-001</span><a class="ns-prodcard__name" href="product.html?code=1187-001">Scotch #665 Double-Sided Tape</a><span class="ns-muted ns-prodcard__meta">Masking Tapes</span>
-              <button type="button" class="shop-wish" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-9.2-8.6C1.2 8.3 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2 3.6 0 5.4 3.8 3.8 6.9C19 15.6 12 20 12 20z"/></svg>Add to wish list</button>
               <div class="ns-prodcard__foot"><span class="ns-stock ns-stock--in">In stock</span><a href="login.html">Sign in for pricing</a></div></div>
           </div>
           <div class="ns-card ns-prodcard">
             <div class="ns-prodcard__media"><svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="#2C63C6"/><circle cx="60" cy="60" r="46" fill="none" stroke="#000" stroke-opacity=".12" stroke-width="2"/><circle cx="60" cy="60" r="28" fill="#EFE2C8"/><circle cx="60" cy="60" r="22" fill="#F4F6F9"/></svg></div>
             <div class="ns-prodcard__body"><span class="ns-mono">ITEM 1187-054</span><a class="ns-prodcard__name" href="product.html?code=1187-054">3M 2090 Blue Masking Tape</a><span class="ns-muted ns-prodcard__meta">Masking Tapes</span>
-              <button type="button" class="shop-wish" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-9.2-8.6C1.2 8.3 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2 3.6 0 5.4 3.8 3.8 6.9C19 15.6 12 20 12 20z"/></svg>Add to wish list</button>
               <div class="ns-prodcard__foot"><span class="ns-stock ns-stock--in">In stock</span><a href="login.html">Sign in for pricing</a></div></div>
           </div>
         </div>
@@ -841,7 +834,6 @@ p { margin: 0; }
       <a href="quick-order.html">Quick Order</a>
       <a href="products.html?searchType=cert">Certificate by Lot #</a>
       <a href="products.html?searchType=sds">SDS Search</a>
-      <a href="account.html#wishlist">Wish list</a>
     </div>
     <div class="ns-footer__col">
       <span class="ns-footer__title">Account</span>
@@ -935,8 +927,8 @@ p { margin: 0; }
 })();
 </script>
 <script>
-/* NU-SOURCE shopping page behaviour: quantity steppers, tabs, wish list button look.
-   Page behaviour only; cart, wish list and order data come from the store backend. */
+/* NU-SOURCE shopping page behaviour: quantity steppers and tabs.
+   Page behaviour only; cart and order data come from the store backend. */
 (function () {
   'use strict';
 
@@ -979,17 +971,7 @@ p { margin: 0; }
     });
   }
 
-  function wireWish() {
-    document.querySelectorAll('.shop-wish').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var on = b.getAttribute('aria-pressed') !== 'true';
-        b.setAttribute('aria-pressed', String(on));
-        b.lastChild.textContent = on ? 'Saved to wish list' : 'Add to wish list';
-      });
-    });
-  }
-
-  function init() { wireQty(); wireTabs(); wireWish(); }
+  function init() { wireQty(); wireTabs(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();

@@ -596,9 +596,6 @@ p { margin: 0; }
 .shop-toolbar__sort .ns-select { height: 44px; width: auto; min-width: 210px; font-size: 15px; }
 
 .shop-card-actions { display: flex; flex-direction: column; gap: 8px; }
-.shop-wish { display: inline-flex; align-items: center; gap: 6px; background: none; border: 0; padding: 0; min-height: 32px; font-family: var(--ns-font-body); font-weight: 600; font-size: 13.5px; color: var(--ns-navy); cursor: pointer; }
-.shop-wish:hover { color: var(--ns-red); }
-.shop-wish[aria-pressed="true"] svg { fill: var(--ns-red); stroke: var(--ns-red); }
 .shop-price-note { font-size: 13.5px; font-weight: 600; color: var(--ns-ink-2); }
 
 .shop-empty { padding: 40px; text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center; }
@@ -782,7 +779,7 @@ p { margin: 0; }
 .shop-stack { display: flex; flex-direction: column; gap: 10px; }
 .shop-section.shop-section--related { margin-top: 72px; }
 .summary__rows.summary__rows--divided { padding-top: 14px; border-top: 1px solid var(--ns-line); }
-.shop-wish.ns-text-sm, .ns-link-arrow.ns-text-sm { font-size: 14.5px; }
+.ns-link-arrow.ns-text-sm { font-size: 14.5px; }
 
 /* Quick order */
 .qo { padding-bottom: 88px; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 24px; align-items: start; }
@@ -1016,7 +1013,6 @@ p { margin: 0; }
       <a href="quick-order.html">Quick Order</a>
       <a href="products.html?searchType=cert">Certificate by Lot #</a>
       <a href="products.html?searchType=sds">SDS Search</a>
-      <a href="account.html#wishlist">Wish list</a>
     </div>
     <div class="ns-footer__col">
       <span class="ns-footer__title">Account</span>
