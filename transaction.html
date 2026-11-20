@@ -628,16 +628,16 @@ p { margin: 0; }
   </nav>
 
   <div class="ns-container ns-page-head">
-    <span class="ns-eyebrow" data-eyebrow>Order details</span>
-    <h1 class="ns-h1" data-title>Order 100245</h1>
+    <span class="ns-eyebrow">Order details</span>
+    <h1 class="ns-h1">Order 100245</h1>
     <p class="ns-lead">Thanks for your purchase! Here are the details.</p>
   </div>
 
   <!-- GreeneStep: order details (live OrdStatus.aspx?OrderNo=…&OrderType=…), opened from Order Status.
        Same information as the live page: order type, number, date, customer number, Bill To, Ship To,
        lines (description, part # code, order qty, shipped, price per unit, amount, est. ship date),
-       payment terms, delivery by, and the summary. Also used after checkout with [data-placed] shown.
-       All values are samples; fill them from the order. -->
+       payment terms, delivery by, and the summary. All values are samples;
+       fill them from the order. The confirmation after checkout is its own page (order-confirmation.html). -->
   <div class="ns-container acct">
     <!-- GreeneStep: menu for signed-in customers, the same links as the live "Services" menu
      (My Account, Order Status, Usage Report, Open Order, Shipped Orders) plus Sign out (UserLogout.aspx). -->
@@ -653,11 +653,6 @@ p { margin: 0; }
     </nav>
 
     <div class="acct-main">
-      <div class="ns-alert ns-alert--success" role="status" data-placed hidden>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>
-        <span>Thank you. Your order has been placed. Questions? Call (877) 974-8500.</span>
-      </div>
-
       <section class="ns-card acct-card" aria-labelledby="summary-title">
         <div class="acct-card__head">
           <h2 class="ns-h3" id="summary-title">[Order type] <span class="badge badge--open badge--inline">Not shipped</span></h2>
@@ -826,15 +821,7 @@ p { margin: 0; }
 })();
 </script>
 <script>
-/* Review-only: transaction.html?state=placed shows the order confirmation (reached from Checkout). */
-(function () {
-  if (new URLSearchParams(location.search).get('state') === 'placed') {
-    document.querySelector('[data-placed]').hidden = false;
-    document.querySelector('[data-eyebrow]').textContent = 'Order placed';
-    document.querySelector('[data-title]').textContent = 'Thank you for your order';
-  }
-  document.querySelector('[data-print]').addEventListener('click', function (e) { e.preventDefault(); window.print(); });
-})();
+document.querySelector('[data-print]').addEventListener('click', function (e) { e.preventDefault(); window.print(); });
 </script>
 </body>
 </html>
