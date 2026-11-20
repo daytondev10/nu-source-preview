@@ -526,6 +526,39 @@ p { margin: 0; }
 .rtable td { padding: 12px 14px; border-bottom: 1px solid var(--ns-line-soft); white-space: nowrap; }
 .rtable tbody tr:last-child td { border-bottom: 0; }
 .rtable .num { text-align: right; }
+
+/* Re-order list */
+.rl-pick { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: flex-end; justify-content: space-between; }
+.rl-pick .ns-field { flex: 0 1 320px; }
+.rl-count { font-size: 14px; color: var(--ns-muted); }
+.rl-item { display: flex; gap: 12px; align-items: center; }
+.rl-item__thumb { width: 52px; height: 52px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; background: var(--ns-surface); border: 1px solid var(--ns-line); border-radius: 8px; }
+.rl-code { display: block; margin-top: 2px; font-size: 12.5px; color: var(--ns-muted); }
+.rl-sub { display: block; color: var(--ns-muted); font-size: 13.5px; }
+.rl-avail { display: flex; justify-content: flex-end; margin-top: 4px; font-size: 12.5px; }
+.rl-qty input { width: 72px; height: 42px; padding: 8px 10px; }
+.rl-table { font-size: 14.5px; }
+.rl-table td { vertical-align: top; }
+.rl-table th { white-space: normal; vertical-align: bottom; font-size: 12px; letter-spacing: .4px; }
+.rl-table .dtable__first { min-width: 230px; }
+.rl-table td.rl-qty { padding-right: 0; }
+.rl-foot { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+.rl-avail { white-space: nowrap; }
+@media (max-width: 1180px) {
+  .rl-table thead { display: none; }
+  .rl-table, .rl-table tbody, .rl-table tr, .rl-table td { display: block; }
+  .rl-table tr { padding: 16px 0; border-bottom: 1px solid var(--ns-line); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 16px; }
+  .rl-table td { padding: 0; border: 0; }
+  .rl-table td[data-label]::before { content: attr(data-label) ": "; color: var(--ns-muted); font-weight: 400; }
+  .rl-table .num { text-align: left; }
+  .rl-table td.dtable__first { grid-column: 1 / -1; margin-bottom: 4px; }
+  .rl-avail { justify-content: flex-start; }
+  .rl-sub { display: inline; margin-left: 6px; }
+  .rl-table td.rl-qty { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; }
+}
+@media (max-width: 560px) {
+  .rl-table tr { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 </style>
 </head>
 <body data-page="usage-report" data-signed-in>
@@ -635,11 +668,13 @@ p { margin: 0; }
   <!-- GreeneStep: Usage Report (live ReportPage.aspx, "Customer Usage Report"): From Date (txtFrom), To date (txtTo), Go (ImgBtnMultipleGo). -->
   <div class="ns-container acct">
     <!-- GreeneStep: menu for signed-in customers, the same links as the live "Services" menu
-     (My Account, Order Status, Usage Report, Open Order, Shipped Orders) plus Sign out (UserLogout.aspx). -->
+     (My Account, Order Status, Usage Report, Open Order, Shipped Orders), the live header's "My Re-order List",
+     plus Sign out (UserLogout.aspx). -->
     <nav class="ns-panel acct-nav" aria-label="My account">
       <ul>
         <li><a href="account.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>My account</a></li>
         <li><a href="order-status.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10"/></svg>Order status</a></li>
+        <li><a href="reorder-list.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/></svg>Re-order list</a></li>
         <li><a href="usage-report.html" aria-current="page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Usage report</a></li>
         <li><a href="open-orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/></svg>Open orders</a></li>
         <li><a href="shipped-orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h11v10H2zM13 10h4l3 3v3h-7M6.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM16.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>Shipped orders</a></li>
