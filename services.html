@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welcome | NU-SOURCE, INC.</title>
+<meta name="description" content="You are signed in to NU-SOURCE, INC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* ==========================================================================
+   NU-SOURCE design system
+   Extracted from the approved Home page concept. Every page links this file;
+   do not restyle individual pages with one-off colors or fonts.
+   ========================================================================== */
+
+/* ---------- Tokens ---------- */
+:root {
+  color-scheme: light;
+
+  /* Brand */
+  --ns-navy: #0E2A56;          /* primary brand, headings, primary buttons */
+  --ns-navy-900: #0A1F40;      /* utility bar, footer */
+  --ns-navy-800: #13336A;      /* cards on navy */
+  --ns-navy-700: #23457E;      /* borders on navy */
+  --ns-navy-line: #1E3866;     /* footer divider */
+  --ns-red: #C62F2F;           /* accent, search button, eyebrow labels */
+  --ns-red-700: #A82525;       /* accent hover */
+  --ns-pink: #F2A3A3;          /* accent on navy backgrounds */
+
+  /* Text */
+  --ns-ink: #1A1F29;
+  --ns-ink-2: #3A4250;
+  --ns-muted: #5A6372;
+  --ns-placeholder: #6B7380;
+  --ns-on-navy: #C9D3E3;
+  --ns-on-navy-2: #9AA8BF;
+  --ns-on-navy-3: #D5DBE5;
+
+  /* Surfaces & lines */
+  --ns-bg: #FFFFFF;
+  --ns-surface: #F4F6F9;
+  --ns-tint: #EEF2F8;
+  --ns-line: #E3E6EB;
+  --ns-line-soft: #EEF0F3;
+  --ns-line-strong: #D4D9E1;
+  --ns-chip-line: #E8EBF0;
+
+  /* Status */
+  --ns-success: #1F6B45;
+  --ns-success-dot: #1F7A4D;
+  --ns-success-bg: #EAF5EF;
+  --ns-error: #B42323;
+  --ns-error-bg: #FCEDED;
+  --ns-info-bg: #EEF2F8;
+
+  /* Type */
+  --ns-font-display: "Archivo", system-ui, sans-serif;
+  --ns-font-body: "Inter", system-ui, sans-serif;
+  --ns-font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Shape & layout */
+  --ns-radius-sm: 8px;
+  --ns-radius: 12px;
+  --ns-radius-lg: 14px;
+  --ns-radius-xl: 16px;
+  --ns-container: 1280px;
+  --ns-gutter: 32px;
+  --ns-focus: 0 0 0 3px rgba(44, 99, 198, .45);
+}
+
+@media (max-width: 640px) {
+  :root { --ns-gutter: 16px; }
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--ns-bg);
+  color: var(--ns-ink);
+  font-family: var(--ns-font-body);
+  font-size: 16px;
+  line-height: 1.55;
+}
+img, svg { max-width: 100%; }
+[hidden] { display: none !important; }
+a { color: var(--ns-navy); text-decoration: none; }
+a:hover { color: var(--ns-red); }
+:focus-visible { outline: none; box-shadow: var(--ns-focus); border-radius: 4px; }
+input::placeholder, textarea::placeholder { color: var(--ns-placeholder); }
+h1, h2, h3, h4 { margin: 0; font-family: var(--ns-font-display); color: var(--ns-navy); }
+p { margin: 0; }
+
+.ns-container { max-width: var(--ns-container); margin: 0 auto; padding-left: var(--ns-gutter); padding-right: var(--ns-gutter); }
+.ns-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.ns-skip { position: absolute; left: -9999px; top: 8px; z-index: 100; background: var(--ns-navy); color: #fff; padding: 10px 16px; border-radius: var(--ns-radius-sm); }
+.ns-skip:focus { left: 8px; color: #fff; }
+
+/* ---------- Type helpers ---------- */
+.ns-eyebrow { font-family: var(--ns-font-mono); font-weight: 500; font-size: 13px; letter-spacing: 1.5px; color: var(--ns-red); text-transform: uppercase; }
+.ns-h1 { font-weight: 800; font-size: clamp(32px, 4.2vw, 48px); line-height: 1.08; letter-spacing: -1px; }
+.ns-h1--hero { font-size: clamp(36px, 5vw, 60px); line-height: 1.04; letter-spacing: -1.2px; }
+.ns-h2 { font-weight: 800; font-size: clamp(28px, 3.2vw, 38px); line-height: 1.15; letter-spacing: -.6px; }
+.ns-h3 { font-weight: 700; font-size: 22px; line-height: 1.25; letter-spacing: -.2px; }
+.ns-lead { font-size: 19px; line-height: 1.6; color: var(--ns-ink-2); }
+.ns-body-2 { font-size: 15px; color: var(--ns-ink-2); }
+.ns-muted { color: var(--ns-muted); }
+.ns-mono { font-family: var(--ns-font-mono); font-size: 12.5px; color: var(--ns-muted); }
+
+/* ---------- Buttons ---------- */
+.ns-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  height: 54px; padding: 0 28px; border-radius: var(--ns-radius-sm);
+  font-family: var(--ns-font-display); font-weight: 700; font-size: 16px; line-height: 1;
+  border: 1.5px solid transparent; cursor: pointer; text-align: center; white-space: nowrap;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+.ns-btn svg { flex: 0 0 auto; }
+.ns-btn--primary { background: var(--ns-navy); color: #fff; }
+.ns-btn--primary:hover { background: var(--ns-navy-900); color: #fff; }
+.ns-btn--accent { background: var(--ns-red); color: #fff; }
+.ns-btn--accent:hover { background: var(--ns-red-700); color: #fff; }
+.ns-btn--outline { background: #fff; border-color: var(--ns-navy); color: var(--ns-navy); }
+.ns-btn--outline:hover { background: var(--ns-tint); color: var(--ns-navy); }
+.ns-btn--ghost { background: #fff; border: 1px solid var(--ns-line-strong); color: var(--ns-navy); font-family: var(--ns-font-body); font-weight: 600; font-size: 14.5px; }
+.ns-btn--ghost:hover { border-color: var(--ns-navy); color: var(--ns-navy); }
+.ns-btn--sm { height: 46px; padding: 0 16px; font-size: 14.5px; gap: 8px; }
+.ns-btn--block { width: 100%; }
+.ns-btn[disabled], .ns-btn[aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
+
+.ns-link-arrow { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 15.5px; }
+
+/* ---------- Cards / surfaces ---------- */
+.ns-card { background: #fff; border: 1px solid var(--ns-line); border-radius: var(--ns-radius-lg); }
+.ns-card--pad { padding: 32px; }
+.ns-panel { background: var(--ns-surface); border: 1px solid var(--ns-line); border-radius: var(--ns-radius-xl); }
+.ns-chip { display: inline-block; font-size: 13.5px; color: var(--ns-ink-2); background: var(--ns-surface); border: 1px solid var(--ns-chip-line); border-radius: 999px; padding: 5px 12px; }
+.ns-chip:hover { border-color: var(--ns-navy); color: var(--ns-navy); }
+.ns-icon-tile { width: 48px; height: 48px; border-radius: 10px; background: var(--ns-tint); display: flex; align-items: center; justify-content: center; flex: 0 0 auto; color: var(--ns-navy); }
+
+/* ---------- Forms ---------- */
+.ns-form { display: flex; flex-direction: column; gap: 20px; }
+.ns-field { display: flex; flex-direction: column; gap: 7px; }
+.ns-label { font-weight: 600; font-size: 14.5px; color: var(--ns-ink); }
+.ns-label .ns-req { color: var(--ns-red); margin-left: 2px; }
+.ns-input, .ns-select, .ns-textarea {
+  width: 100%; height: 50px; padding: 0 16px;
+  border: 1.5px solid var(--ns-line-strong); border-radius: var(--ns-radius-sm);
+  background: #fff; color: var(--ns-ink);
+  font-family: var(--ns-font-body); font-size: 16px;
+  transition: border-color .15s, box-shadow .15s;
+}
+.ns-textarea { height: auto; min-height: 130px; padding: 12px 16px; resize: vertical; }
+.ns-input:hover, .ns-select:hover, .ns-textarea:hover { border-color: #AEB6C3; }
+.ns-input:focus, .ns-select:focus, .ns-textarea:focus { outline: none; border-color: var(--ns-navy); box-shadow: var(--ns-focus); }
+.ns-field.is-invalid .ns-input, .ns-field.is-invalid .ns-select, .ns-field.is-invalid .ns-textarea { border-color: var(--ns-error); }
+.ns-field-error { display: none; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 500; color: var(--ns-error); }
+.ns-field.is-invalid .ns-field-error { display: flex; }
+.ns-hint { font-size: 13.5px; color: var(--ns-muted); }
+
+.ns-input-wrap { position: relative; display: flex; }
+.ns-input-wrap .ns-input { padding-right: 84px; }
+.ns-input-toggle {
+  position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  height: 38px; min-width: 44px; padding: 0 12px; border: 0; border-radius: 6px; background: transparent;
+  font-family: var(--ns-font-body); font-weight: 600; font-size: 13.5px; color: var(--ns-navy); cursor: pointer;
+}
+.ns-input-toggle:hover { background: var(--ns-tint); }
+
+.ns-check { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ns-ink-2); cursor: pointer; min-height: 44px; }
+.ns-check input { width: 20px; height: 20px; margin: 0; accent-color: var(--ns-navy); cursor: pointer; }
+
+/* ---------- Alerts ---------- */
+.ns-alert { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: var(--ns-radius-sm); font-size: 14.5px; line-height: 1.5; border: 1px solid transparent; }
+.ns-alert svg { flex: 0 0 auto; margin-top: 1px; }
+.ns-alert--error { background: var(--ns-error-bg); border-color: #F2C4C4; color: #7E1A1A; }
+.ns-alert--success { background: var(--ns-success-bg); border-color: #BFE0CC; color: #17543A; }
+.ns-alert--info { background: var(--ns-info-bg); border-color: #D2DCEC; color: var(--ns-navy); }
+.ns-alert[hidden] { display: none; }
+
+
+/* ---------- Stock indicators ---------- */
+.ns-stock { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 600; }
+.ns-stock::before { content: ""; width: 8px; height: 8px; border-radius: 4px; }
+.ns-stock--in { color: var(--ns-success); }
+.ns-stock--in::before { background: var(--ns-success-dot); }
+.ns-stock--out { color: var(--ns-muted); }
+.ns-stock--out::before { border: 1.5px solid #8A93A1; }
+
+/* ---------- Breadcrumb & page header ---------- */
+.ns-breadcrumb { padding-top: 20px; padding-bottom: 0; font-size: 14px; color: var(--ns-muted); }
+.ns-breadcrumb ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.ns-breadcrumb li { display: flex; align-items: center; gap: 6px; }
+.ns-breadcrumb li + li::before { content: "/"; color: #A3ABB8; }
+.ns-breadcrumb a { color: var(--ns-ink-2); }
+.ns-breadcrumb [aria-current="page"] { color: var(--ns-muted); }
+
+.ns-page-head { padding-top: 28px; padding-bottom: 36px; display: flex; flex-direction: column; gap: 10px; }
+.ns-page-head p { font-size: 17px; color: var(--ns-ink-2); max-width: 680px; }
+
+/* ==========================================================================
+   Site chrome (header, category nav, footer) — markup injected by site.js
+   ========================================================================== */
+.ns-utility { background: var(--ns-navy-900); color: var(--ns-on-navy-3); font-size: 13.5px; }
+.ns-utility__inner { padding-top: 9px; padding-bottom: 9px; display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: center; justify-content: space-between; }
+.ns-utility__group { display: flex; flex-wrap: wrap; gap: 6px 24px; align-items: center; }
+.ns-utility a { color: var(--ns-on-navy-3); }
+.ns-utility a:hover { color: #fff; }
+.ns-utility .ns-utility__phone { display: flex; gap: 8px; align-items: center; }
+.ns-utility .ns-utility__phone a { color: #fff; font-weight: 600; }
+
+.ns-header { border-bottom: 1px solid var(--ns-line); background: #fff; }
+.ns-header__main { padding-top: 20px; padding-bottom: 20px; display: flex; flex-wrap: wrap; gap: 20px 36px; align-items: center; }
+
+.ns-logo { display: flex; flex-direction: column; gap: 2px; flex: 0 0 auto; }
+.ns-logo__mark { font-family: var(--ns-font-display); font-style: italic; font-weight: 800; font-size: 40px; line-height: .95; color: var(--ns-navy); letter-spacing: -1px; }
+.ns-logo__name { font-family: var(--ns-font-display); font-weight: 700; font-size: 10.5px; letter-spacing: 2.2px; color: var(--ns-red); }
+.ns-logo:hover .ns-logo__mark { color: var(--ns-navy); }
+
+.ns-search { flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.ns-search__modes { display: flex; gap: 6px; flex-wrap: wrap; }
+.ns-search__mode { border: 1px solid var(--ns-line-strong); background: #fff; color: var(--ns-ink-2); border-radius: 999px; padding: 6px 14px; font-family: var(--ns-font-body); font-size: 13px; font-weight: 500; cursor: pointer; min-height: 32px; }
+.ns-search__mode[aria-selected="true"] { border-color: var(--ns-navy); background: var(--ns-navy); color: #fff; font-weight: 600; }
+.ns-search__bar { display: flex; border: 2px solid var(--ns-navy); border-radius: var(--ns-radius-sm); overflow: hidden; background: #fff; }
+.ns-search__bar:focus-within { box-shadow: var(--ns-focus); }
+.ns-search__input { flex: 1 1 auto; min-width: 0; border: 0; outline: none; padding: 0 18px; height: 50px; font-family: var(--ns-font-body); font-size: 16px; color: var(--ns-ink); background: transparent; }
+.ns-search__input:focus { box-shadow: none; }
+.ns-search__submit { flex: 0 0 auto; border: 0; background: var(--ns-red); color: #fff; font-family: var(--ns-font-display); font-weight: 700; font-size: 15px; letter-spacing: .3px; padding: 0 26px; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.ns-search__submit:hover { background: var(--ns-red-700); }
+
+.ns-account-nav { display: flex; gap: 10px; align-items: center; flex: 0 0 auto; }
+.ns-account-nav .ns-btn--sm { font-family: var(--ns-font-body); font-weight: 600; }
+.ns-cart-btn { background: var(--ns-navy); color: #fff; border: 0; }
+.ns-cart-btn:hover { background: var(--ns-navy-900); color: #fff; }
+
+/* Mini cart (header) */
+.ns-minicart { position: relative; }
+.ns-minicart__panel { position: absolute; right: 0; top: calc(100% + 10px); z-index: 50; width: 360px; max-width: calc(100vw - 2 * var(--ns-gutter));
+  background: #fff; border: 1px solid var(--ns-line); border-radius: var(--ns-radius-lg); box-shadow: 0 16px 40px rgba(14, 42, 86, .16);
+  padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+.ns-minicart__panel [data-minicart-empty], .ns-minicart__panel [data-minicart-full] { display: flex; flex-direction: column; gap: 14px; }
+.ns-minicart__head { display: flex; align-items: center; justify-content: space-between; }
+.ns-minicart__head strong { font-family: var(--ns-font-display); font-weight: 700; font-size: 18px; color: var(--ns-navy); }
+.ns-minicart__close { width: 40px; height: 40px; margin: -8px -8px -8px 0; border: 0; background: none; border-radius: 8px; color: var(--ns-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.ns-minicart__close:hover { background: var(--ns-surface); color: var(--ns-navy); }
+.ns-minicart__empty { color: var(--ns-ink-2); font-size: 15px; }
+.ns-minicart__items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; max-height: 260px; overflow-y: auto; }
+.ns-minicart__item { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 12px 0; border-bottom: 1px solid var(--ns-line-soft); }
+.ns-minicart__item:first-child { padding-top: 0; }
+.ns-minicart__item a { font-weight: 600; font-size: 14.5px; line-height: 1.35; }
+.ns-minicart__item span { grid-column: 1; font-size: 13px; color: var(--ns-muted); }
+.ns-minicart__item b { grid-column: 2; grid-row: 1 / span 2; font-size: 14.5px; font-weight: 600; color: var(--ns-ink); }
+.ns-minicart__totals { margin: 0; display: flex; flex-direction: column; gap: 6px; font-size: 14.5px; }
+.ns-minicart__totals div { display: flex; justify-content: space-between; }
+.ns-minicart__totals dt { color: var(--ns-ink-2); }
+.ns-minicart__totals dd { margin: 0; font-weight: 700; color: var(--ns-navy); }
+.ns-minicart__note { font-size: 13px; color: var(--ns-muted); }
+.ns-minicart__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ns-minicart__clear { align-self: center; font-size: 13.5px; font-weight: 600; color: var(--ns-muted); }
+@media (max-width: 560px) {
+  .ns-minicart { position: static; }
+  .ns-header__main { position: relative; }
+  .ns-minicart__panel { left: var(--ns-gutter); right: var(--ns-gutter); width: auto; max-width: none; top: 70px; }
+  .ns-account-nav .ns-minicart__panel .ns-btn--sm { width: auto; padding: 0 16px; }
+}
+
+.ns-catnav { border-top: 1px solid var(--ns-line-soft); }
+.ns-catnav__inner { display: flex; flex-wrap: wrap; gap: 0 4px; align-items: center; }
+.ns-catnav__all { display: flex; align-items: center; gap: 8px; padding: 14px 16px 14px 0; font-family: var(--ns-font-display); font-weight: 700; font-size: 15px; color: var(--ns-navy); background: none; border: 0; cursor: pointer; }
+.ns-catnav__link { padding: 14px; font-weight: 500; font-size: 14.5px; color: var(--ns-ink-2); }
+.ns-catnav__link[aria-current="page"] { color: var(--ns-navy); box-shadow: inset 0 -3px 0 var(--ns-red); }
+.ns-catnav__toggle { display: none; }
+
+.ns-menu-btn { display: none; }
+
+/* Footer */
+.ns-footer { background: var(--ns-navy-900); color: var(--ns-on-navy); font-size: 14.5px; }
+.ns-footer a { color: var(--ns-on-navy); }
+.ns-footer a:hover { color: #fff; }
+.ns-footer__main { padding-top: 64px; padding-bottom: 32px; display: flex; flex-wrap: wrap; gap: 40px 56px; }
+.ns-footer__brand { flex: 1.4 1 260px; display: flex; flex-direction: column; gap: 14px; }
+.ns-footer__brand .ns-logo__mark { color: #fff; font-size: 34px; }
+.ns-footer__brand .ns-logo__name { color: var(--ns-pink); font-size: 10px; }
+.ns-footer__col { flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; }
+.ns-footer__title { font-family: var(--ns-font-display); font-weight: 700; color: #fff; font-size: 15px; margin-bottom: 4px; }
+.ns-footer__bottom { padding-top: 20px; padding-bottom: 28px; border-top: 1px solid var(--ns-navy-line); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 13px; color: var(--ns-on-navy-2); }
+.ns-footer__bottom a { color: var(--ns-on-navy-2); }
+.ns-footer__legal { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+
+/* ---------- Responsive chrome ---------- */
+@media (max-width: 900px) {
+  .ns-utility__hours, .ns-utility__city { display: none; }
+  .ns-header__main { gap: 14px 16px; padding-top: 14px; padding-bottom: 14px; }
+  .ns-header__main .ns-logo { order: 1; }
+  .ns-account-nav { order: 2; margin-left: auto; gap: 8px; }
+  .ns-search { order: 3; flex-basis: 100%; }
+  .ns-catnav__toggle { display: flex; width: 100%; justify-content: space-between; padding: 14px 0; }
+  .ns-catnav__inner { flex-direction: column; align-items: stretch; }
+  .ns-catnav__list { display: none; flex-direction: column; padding-bottom: 10px; }
+  .ns-catnav.is-open .ns-catnav__list { display: flex; }
+  .ns-catnav__list .ns-catnav__all { display: none; }
+  .ns-catnav__link { padding: 12px 0; border-top: 1px solid var(--ns-line-soft); }
+  .ns-catnav__link[aria-current="page"] { box-shadow: inset 3px 0 0 var(--ns-red); padding-left: 12px; }
+}
+@media (min-width: 901px) {
+  .ns-catnav__list { display: contents; }
+}
+@media (max-width: 560px) {
+  .ns-logo__mark { font-size: 32px; }
+  .ns-account-nav .ns-btn__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .ns-account-nav .ns-btn--sm { width: 46px; padding: 0; }
+  .ns-account-nav .ns-cart-btn { width: auto; padding: 0 12px; }
+  .ns-search__submit { padding: 0 16px; }
+  .ns-search__submit .ns-btn__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .ns-btn { height: 50px; padding: 0 22px; }
+  .ns-card--pad { padding: 22px; }
+}
+
+/* ---------- Category card (Home grid, All products) ---------- */
+.ns-catgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); gap: 20px; }
+.ns-catcard { padding: 26px 26px 22px; display: flex; flex-direction: column; gap: 16px; }
+.ns-catcard__head { display: flex; align-items: center; gap: 14px; }
+.ns-catcard__title { display: flex; flex-direction: column; }
+.ns-catcard__title a { font-family: var(--ns-font-display); font-weight: 700; font-size: 20px; color: var(--ns-navy); line-height: 1.25; }
+.ns-catcard__title a:hover { color: var(--ns-red); }
+.ns-catcard__title span { font-size: 13.5px; color: var(--ns-muted); }
+.ns-catcard__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ---------- Product card ---------- */
+.ns-prodgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: 20px; }
+.ns-prodcard { overflow: hidden; display: flex; flex-direction: column; }
+.ns-prodcard__media { background: var(--ns-surface); height: 190px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--ns-line); }
+.ns-prodcard__body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1 1 auto; }
+.ns-prodcard__name { font-family: var(--ns-font-display); font-weight: 700; font-size: 17.5px; line-height: 1.3; color: var(--ns-navy); }
+.ns-prodcard__foot { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--ns-line-soft); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.ns-prodcard__foot a { font-size: 13.5px; font-weight: 600; }
+
+/* ---------- Section header ---------- */
+.ns-section-head { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: flex-end; justify-content: space-between; margin-bottom: 36px; }
+.ns-section-head > div { display: flex; flex-direction: column; gap: 8px; }
+
+/* ---------- Form sections (Register, Checkout, My Account) ---------- */
+.ns-fieldset { border: 0; margin: 0; padding: 0; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.ns-fieldset + .ns-fieldset { padding-top: 28px; border-top: 1px solid var(--ns-line); }
+.ns-legend { float: left; width: 100%; padding: 0; font-family: var(--ns-font-display); font-weight: 700; font-size: 18px; color: var(--ns-navy); }
+.ns-legend-hint { margin-top: -10px; font-size: 14.5px; color: var(--ns-muted); }
+.ns-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; }
+.ns-form-grid .ns-span-2 { grid-column: 1 / -1; }
+.ns-label .ns-optional { font-weight: 400; color: var(--ns-muted); margin-left: 4px; }
+.ns-select { appearance: none; -webkit-appearance: none; padding-right: 44px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%230E2A56' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; }
+.ns-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.ns-btn--text { background: none; border: 0; color: var(--ns-navy); font-family: var(--ns-font-body); font-weight: 600; font-size: 15px; height: 54px; padding: 0 12px; cursor: pointer; }
+.ns-btn--text:hover { color: var(--ns-red); }
+
+.ns-captcha { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+.ns-captcha__image { height: 50px; min-width: 150px; padding: 0 18px; display: flex; align-items: center; justify-content: center; border: 1.5px dashed var(--ns-line-strong); border-radius: var(--ns-radius-sm); background: var(--ns-surface); font-family: "Courier New", monospace; font-weight: 700; font-size: 24px; letter-spacing: 4px; color: var(--ns-ink); font-style: italic; user-select: none; margin-top: 29px; } /* lines up with the input below its label */
+.ns-captcha .ns-field { flex: 1 1 200px; }
+
+.ns-placeholder-note { font-size: 13.5px; color: var(--ns-muted); background: var(--ns-surface); border: 1px dashed var(--ns-line-strong); border-radius: var(--ns-radius-sm); padding: 10px 12px; }
+
+@media (max-width: 640px) {
+  .ns-form-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Small modifiers ---------- */
+.ns-catnav__label { display: flex; align-items: center; gap: 8px; }
+.ns-footer__address { line-height: 1.6; }
+.ns-footer a.ns-footer__phone { color: #fff; font-weight: 600; }
+.ns-prodcard__meta { font-size: 13.5px; }
+.ns-h3.ns-h3--sm { font-size: 18px; }
+.ns-heading-note { margin-top: 4px; }
+.ns-actions.ns-actions--center { justify-content: center; }
+.ns-field.ns-field--end { justify-content: flex-end; }
+.ns-gap-below { margin-bottom: 24px; }
+.ns-textarea.ns-textarea--address { min-height: 84px; }
+.ns-textarea.ns-textarea--notes { min-height: 96px; }
+.ns-hint .ns-req { color: var(--ns-red); }
+.ns-text-sm { font-size: 14.5px; }
+</style>
+<style>
+/* Signed-in account pages: My Account, Order Status, Transaction Details. */
+.acct { padding-bottom: 88px; display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 32px; align-items: start; }
+.acct-nav { padding: 14px; position: sticky; top: 24px; }
+.acct-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.acct-nav a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; font-size: 15px; font-weight: 500; color: var(--ns-ink-2); }
+.acct-nav a:hover { background: #fff; color: var(--ns-navy); }
+.acct-nav a[aria-current="page"] { background: #fff; color: var(--ns-navy); font-weight: 600; box-shadow: inset 3px 0 0 var(--ns-red); }
+.acct-nav svg { flex: 0 0 auto; color: var(--ns-muted); }
+.acct-nav a[aria-current="page"] svg { color: var(--ns-red); }
+.acct-nav__signout { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--ns-line); }
+
+.acct-main { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.acct-card { padding: 28px; display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 24px; }
+.acct-card__head { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: baseline; justify-content: space-between; }
+.acct-card__head p { color: var(--ns-muted); font-size: 14.5px; margin-top: 4px; width: 100%; }
+.acct-card__head a { font-weight: 600; font-size: 14.5px; }
+
+.acct-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); gap: 16px; }
+.acct-tile { padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+.acct-tile h3 { font-size: 16px; font-weight: 700; }
+.acct-tile a { font-weight: 600; font-size: 14px; margin-top: auto; }
+
+/* Status badge */
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-size: 13px; font-weight: 600; white-space: nowrap; border: 1px solid transparent; }
+.badge::before { content: ""; width: 7px; height: 7px; border-radius: 4px; background: currentColor; }
+.badge--open { background: var(--ns-info-bg); color: var(--ns-navy); border-color: #D2DCEC; }
+.badge--shipped { background: var(--ns-success-bg); color: var(--ns-success); border-color: #BFE0CC; }
+.badge--invoiced { background: var(--ns-surface); color: var(--ns-ink-2); border-color: var(--ns-line-strong); }
+.badge--partial { background: #FFF6E5; color: #8A5A00; border-color: #F1D9A6; }
+.badge--cancelled { background: var(--ns-error-bg); color: var(--ns-error); border-color: #F2C4C4; }
+
+/* Data table: rows become cards on phones */
+.dtable { width: 100%; border-collapse: collapse; font-size: 15px; }
+.dtable th { text-align: left; font-size: 13px; font-weight: 600; color: var(--ns-muted); text-transform: uppercase; letter-spacing: .6px; padding: 0 14px 12px; border-bottom: 1px solid var(--ns-line); white-space: nowrap; }
+.dtable td { padding: 16px 14px; border-bottom: 1px solid var(--ns-line-soft); vertical-align: middle; }
+.dtable th:first-child, .dtable td:first-child { padding-left: 0; }
+.dtable th:last-child, .dtable td:last-child { padding-right: 0; }
+.dtable .num { text-align: right; }
+.dtable td.num { font-weight: 600; }
+.dtable__actions { display: flex; gap: 14px; justify-content: flex-end; white-space: nowrap; }
+.dtable__actions a { font-weight: 600; font-size: 14.5px; }
+.dtable__order { font-weight: 700; }
+@media (max-width: 760px) {
+  .dtable thead { display: none; }
+  .dtable, .dtable tbody, .dtable tr, .dtable td { display: block; }
+  .dtable tr { padding: 16px 0; border-bottom: 1px solid var(--ns-line); display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; }
+  .dtable td { padding: 0; border: 0; }
+  .dtable td[data-label]::before { content: attr(data-label) ": "; color: var(--ns-muted); font-weight: 400; }
+  .dtable .num { text-align: left; }
+  .dtable td.dtable__first { grid-column: 1; }
+  .dtable td.dtable__badge { grid-column: 2; grid-row: 1; justify-self: end; }
+  .dtable td.dtable__actions-cell { grid-column: 1 / -1; padding-top: 6px; }
+  .dtable__actions { justify-content: flex-start; }
+  .dtable--items tr { grid-template-columns: 1fr 1fr; }
+  .dtable--items td.dtable__first { grid-column: 1 / -1; margin-bottom: 4px; }
+}
+
+.filters { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) auto; gap: 14px; align-items: end; }
+.filters .ns-btn { height: 50px; }
+@media (max-width: 900px) { .filters { grid-template-columns: 1fr 1fr; } .filters .ns-field:first-child { grid-column: 1 / -1; } }
+@media (max-width: 480px) { .filters { grid-template-columns: 1fr; } }
+
+/* Order detail */
+.order-meta { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); gap: 18px 24px; margin: 0; }
+.order-meta div { display: flex; flex-direction: column; gap: 4px; }
+.order-meta dt { font-size: 13px; color: var(--ns-muted); text-transform: uppercase; letter-spacing: .6px; font-weight: 600; }
+.order-meta dd { margin: 0; font-weight: 600; color: var(--ns-ink); }
+.order-addresses { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 16px; }
+.order-addresses .acct-tile address { font-style: normal; line-height: 1.6; color: var(--ns-ink-2); font-size: 15px; }
+.order-totals { margin: 0 0 0 auto; width: min(360px, 100%); display: flex; flex-direction: column; gap: 10px; font-size: 15px; }
+.order-totals div { display: flex; justify-content: space-between; gap: 12px; }
+.order-totals dt { color: var(--ns-ink-2); }
+.order-totals dd { margin: 0; font-weight: 600; }
+.order-totals .is-total { padding-top: 12px; border-top: 1px solid var(--ns-line-strong); font-family: var(--ns-font-display); font-weight: 800; font-size: 17px; }
+.order-totals .is-total dt, .order-totals .is-total dd { color: var(--ns-navy); font-weight: 800; }
+.track { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.track li { display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: var(--ns-muted); }
+.track li::before { content: ""; height: 6px; border-radius: 3px; background: var(--ns-line); }
+.track .is-done { color: var(--ns-ink); font-weight: 600; }
+.track .is-done::before { background: var(--ns-success-dot); }
+.track .is-current { color: var(--ns-navy); font-weight: 700; }
+.track .is-current::before { background: var(--ns-navy); }
+
+@media (max-width: 900px) {
+  .acct { grid-template-columns: 1fr; gap: 20px; }
+  .acct-nav { position: static; padding: 8px; overflow-x: auto; }
+  .acct-nav ul { flex-direction: row; gap: 4px; }
+  .acct-nav a { white-space: nowrap; padding: 9px 12px; }
+  .acct-nav a[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--ns-red); }
+  .acct-nav__signout { margin: 0; padding: 0; border: 0; }
+}
+@media (max-width: 560px) {
+  .acct { padding-bottom: 56px; }
+  .acct-card { padding: 20px; }
+  .track { grid-template-columns: 1fr 1fr; row-gap: 14px; }
+}
+
+/* Modifiers */
+.ns-prodcard__media.ns-prodcard__media--short { height: 150px; }
+.acct-form--narrow { max-width: 520px; }
+.acct-card.acct-card--row { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.badge.badge--inline { vertical-align: middle; margin-left: 8px; }
+.ns-actions.ns-actions--tight { gap: 6px 18px; }
+
+/* My Account: billing details and address lists */
+.acct-dl { margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); gap: 16px 24px; }
+.acct-dl div { display: flex; flex-direction: column; gap: 4px; }
+.acct-dl dt { font-size: 13px; color: var(--ns-muted); text-transform: uppercase; letter-spacing: .6px; font-weight: 600; }
+.acct-dl dd { margin: 0; font-weight: 600; color: var(--ns-ink); overflow-wrap: anywhere; }
+.acct-card__head .ns-btn { align-self: center; }
+.addr-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 16px; }
+.addr-card { padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+.addr-card.is-default { border-color: var(--ns-navy); box-shadow: inset 0 0 0 1px var(--ns-navy); }
+.addr-card__top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.addr-card address { font-style: normal; line-height: 1.6; color: var(--ns-ink-2); font-size: 15px; }
+.addr-card__actions { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: auto; padding-top: 8px; border-top: 1px solid var(--ns-line-soft); }
+.addr-card__btn { background: none; border: 0; padding: 4px 0; font: inherit; font-size: 14.5px; font-weight: 600; color: var(--ns-link, var(--ns-navy)); cursor: pointer; }
+.addr-card__btn:hover { text-decoration: underline; }
+.addr-card__btn--danger { color: var(--ns-error); }
+
+/* Order Status filters and groups */
+.filters.filters--orders { grid-template-columns: minmax(0, 1.5fr) minmax(0, .9fr) minmax(0, .9fr) minmax(150px, 1.2fr) minmax(150px, 1.2fr) auto; }
+@media (max-width: 1100px) { .filters.filters--orders { grid-template-columns: repeat(3, minmax(0, 1fr)); } .filters.filters--orders .ns-field:first-child { grid-column: 1 / -1; } }
+@media (max-width: 560px) { .filters.filters--orders { grid-template-columns: repeat(2, minmax(0, 1fr)); } .filters.filters--orders .ns-btn { grid-column: 1 / -1; } }
+.orders-group { font-size: 13px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--ns-red); margin: 4px 0 -8px; }
+
+/* Order details lines */
+.dtable--lines td, .dtable--lines th { padding-left: 10px; padding-right: 10px; }
+.dtable--lines .unit { color: var(--ns-muted); font-weight: 500; white-space: nowrap; }
+.order-note { font-size: 13.5px; color: var(--ns-muted); line-height: 1.55; }
+
+/* Reports */
+.filters.filters--dates { grid-template-columns: minmax(150px, 220px) minmax(150px, 220px) auto; justify-content: start; }
+.filters.filters--dates .ns-field:first-child { grid-column: auto; }
+@media (max-width: 480px) { .filters.filters--dates { grid-template-columns: repeat(2, minmax(0, 1fr)); } .filters.filters--dates .ns-btn { grid-column: 1 / -1; } }
+.report-results { padding: 28px 20px; text-align: center; color: var(--ns-muted); font-size: 14.5px; background: var(--ns-surface); border: 1px dashed var(--ns-line-strong); border-radius: var(--ns-radius-sm); }
+.table-scroll { overflow-x: auto; border: 1px solid var(--ns-line); border-radius: var(--ns-radius-sm); }
+.table-scroll:focus-visible { outline: 3px solid var(--ns-focus, #2F6FEB); outline-offset: 2px; }
+.rtable { border-collapse: collapse; font-size: 14px; min-width: 100%; }
+.rtable th { text-align: left; font-size: 12px; font-weight: 600; color: var(--ns-muted); text-transform: uppercase; letter-spacing: .5px; padding: 12px 14px; background: var(--ns-surface); border-bottom: 1px solid var(--ns-line); white-space: nowrap; position: sticky; top: 0; }
+.rtable td { padding: 12px 14px; border-bottom: 1px solid var(--ns-line-soft); white-space: nowrap; }
+.rtable tbody tr:last-child td { border-bottom: 0; }
+.rtable .num { text-align: right; }
+</style>
+</head>
+<body data-page="services" data-signed-in>
+<!-- ===================== SITE HEADER (shared on every page) =====================
+     GreeneStep: this block belongs in the master page.
+     - Cart button: replace the count in "Cart (0)" and the aria-label with the live cart quantity.
+     - Account button: when the customer is signed in, swap the "Sign in" link for
+       <a class="ns-btn ns-btn--ghost ns-btn--sm" href="account.html">[user icon]<span class="ns-btn__label">My account</span></a>
+     - Search form: searchType = products | cert | sds (matches the live site's
+       Product Search / Certificate by Lot# / SDS Search selector); q = the search text.
+     ============================================================================= -->
+<a class="ns-skip" href="#main">Skip to main content</a>
+<div class="ns-utility">
+  <div class="ns-container ns-utility__inner">
+    <div class="ns-utility__group">
+      <span class="ns-utility__phone"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg><a href="tel:8779748500">(877) 974-8500</a></span>
+      <span class="ns-utility__hours">Mon–Fri 8:00 am – 4:30 pm</span>
+      <span class="ns-utility__city">Phoenix, Arizona</span>
+    </div>
+    <div class="ns-utility__group">
+      <a href="contact.html">Contact us</a>
+      <a href="order-status.html">Order status</a>
+    </div>
+  </div>
+</div>
+<header class="ns-header">
+  <div class="ns-container ns-header__main">
+    <a class="ns-logo" href="index.html" aria-label="NU-SOURCE home"><span class="ns-logo__mark">NSI</span><span class="ns-logo__name">NU-SOURCE, INC.</span></a>
+
+    <form class="ns-search" role="search" action="products.html" method="get" data-ns-search>
+      <div class="ns-search__modes" role="tablist" aria-label="Search type">
+        <button type="button" role="tab" class="ns-search__mode" data-mode="products" data-placeholder="Search by product name, brand or item code…" aria-selected="true">Products</button>
+        <button type="button" role="tab" class="ns-search__mode" data-mode="cert" data-placeholder="Enter a lot number to find its certificate…" aria-selected="false">Certificate by Lot #</button>
+        <button type="button" role="tab" class="ns-search__mode" data-mode="sds" data-placeholder="Search Safety Data Sheets by product…" aria-selected="false">Safety Data Sheets</button>
+      </div>
+      <input type="hidden" name="searchType" value="products">
+      <div class="ns-search__bar">
+        <label for="ns-site-search" class="ns-sr-only">Search</label>
+        <input id="ns-site-search" class="ns-search__input" type="search" name="q" placeholder="Search by product name, brand or item code…" autocomplete="off">
+        <button type="submit" class="ns-search__submit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-3.5-3.5"></path></svg><span class="ns-btn__label">Search</span></button>
+      </div>
+    </form>
+
+    <nav class="ns-account-nav" aria-label="Account">
+      <a class="ns-btn ns-btn--ghost ns-btn--sm" href="quick-order.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18M3 12h18M3 19h12"></path></svg><span class="ns-btn__label">Quick Order</span></a>
+      <a class="ns-btn ns-btn--ghost ns-btn--sm" href="login.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg><span class="ns-btn__label">Sign in</span></a>
+      <!-- Mini cart (live: "Cart: (0)" box with Shopping Cart | Cart List | Empty Cart, Qty and Total).
+           GreeneStep: set the count in [data-minicart-count] and the aria-label; fill
+           [data-minicart-items] with one .ns-minicart__item per cart line, set [data-minicart-qty] and
+           [data-minicart-total]. Show [data-minicart-empty] instead of [data-minicart-full] when the cart is empty.
+           Without JavaScript the button's cart.html link still works. -->
+      <div class="ns-minicart" data-minicart>
+        <a class="ns-btn ns-btn--sm ns-cart-btn" href="cart.html" aria-label="Cart, 0 items" aria-expanded="false" aria-controls="ns-minicart-panel" data-minicart-toggle><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM18 18.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"></path></svg><span>Cart (<span data-minicart-count>0</span>)</span></a>
+        <div class="ns-minicart__panel" id="ns-minicart-panel" role="dialog" aria-label="Cart" hidden>
+          <div class="ns-minicart__head"><strong>Your cart</strong><button type="button" class="ns-minicart__close" aria-label="Close cart" data-minicart-close><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></button></div>
+          <div data-minicart-empty>
+            <p class="ns-minicart__empty">Your cart is empty.</p>
+            <a class="ns-btn ns-btn--primary ns-btn--sm ns-btn--block" href="category.html">Shop all products</a>
+          </div>
+          <div data-minicart-full hidden>
+            <ul class="ns-minicart__items" data-minicart-items>
+              <!-- GreeneStep: sample lines for review; replace with the cart's lines -->
+              <li class="ns-minicart__item"><a href="product.html?code=1187-054">3M 2090 Blue Masking Tape</a><span>1187-054 · Qty 4</span><b>[$0.00]</b></li>
+              <li class="ns-minicart__item"><a href="product.html?code=1187-001">Scotch #665 Double-Sided Tape</a><span>1187-001 · Qty 2</span><b>[$0.00]</b></li>
+            </ul>
+            <dl class="ns-minicart__totals"><div><dt>Quantity</dt><dd data-minicart-qty>6</dd></div><div><dt>Total</dt><dd data-minicart-total>[$0.00]</dd></div></dl>
+            <p class="ns-minicart__note">Please check the quantities and totals in your cart.</p>
+            <div class="ns-minicart__actions"><a class="ns-btn ns-btn--outline ns-btn--sm" href="cart.html">View cart</a><a class="ns-btn ns-btn--accent ns-btn--sm" href="checkout.html">Checkout</a></div>
+            <a class="ns-minicart__clear" href="cart.html?action=empty">Empty cart</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <nav class="ns-catnav" aria-label="Product categories">
+    <div class="ns-container ns-catnav__inner">
+      <button type="button" class="ns-catnav__all ns-catnav__toggle" aria-expanded="false" aria-controls="ns-catnav-list"><span class="ns-catnav__label"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>Shop by category</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+      <div class="ns-catnav__list" id="ns-catnav-list">
+        <a class="ns-catnav__all" href="category.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>All products</a>
+        <a class="ns-catnav__link" href="category.html?code=TAPE">Tapes</a>
+        <a class="ns-catnav__link" href="category.html?code=PCB">PCB &amp; Laboratory Supplies</a>
+        <a class="ns-catnav__link" href="category.html?code=Aerospace">Aerospace Products</a>
+        <a class="ns-catnav__link" href="category.html?code=CLNROOM">Clean Room Supplies</a>
+        <a class="ns-catnav__link" href="category.html?code=DESPWOOD">Medical</a>
+        <a class="ns-catnav__link" href="category.html?code=SUPPLIES">Office &amp; Warehouse Supplies</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<!-- =================== /SITE HEADER =================== -->
+
+<main id="main">
+  <nav class="ns-container ns-breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="index.html">Home</a></li>
+      <li><span aria-current="page">Welcome</span></li>
+    </ol>
+  </nav>
+
+  <div class="ns-container ns-page-head">
+    <span class="ns-eyebrow">Account</span>
+    <h1 class="ns-h1">Welcome, [Name]</h1>
+    <p class="ns-lead">You have been successfully signed in.</p>
+  </div>
+
+  <!-- GreeneStep: the page shown right after sign-in (live Resources.aspx, "List of Product/ Services provided for Users").
+       Live links: Continue Shopping (store home), Order Status, Logout. The other tiles are the live Services menu links. -->
+  <div class="ns-container acct">
+    <!-- GreeneStep: menu for signed-in customers, the same links as the live "Services" menu
+     (My Account, Order Status, Usage Report, Open Order, Shipped Orders) plus Sign out (UserLogout.aspx). -->
+    <nav class="ns-panel acct-nav" aria-label="My account">
+      <ul>
+        <li><a href="account.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>My account</a></li>
+        <li><a href="order-status.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10"/></svg>Order status</a></li>
+        <li><a href="usage-report.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Usage report</a></li>
+        <li><a href="open-orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/></svg>Open orders</a></li>
+        <li><a href="shipped-orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h11v10H2zM13 10h4l3 3v3h-7M6.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM16.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>Shipped orders</a></li>
+        <li class="acct-nav__signout"><a href="login.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4M10 17l5-5-5-5M15 12H3"/></svg>Sign out</a></li>
+      </ul>
+    </nav>
+
+    <div class="acct-main">
+      <section class="ns-card acct-card" aria-labelledby="svc-title">
+        <div class="acct-card__head"><h2 class="ns-h3" id="svc-title">What would you like to do?</h2></div>
+        <div class="acct-tiles">
+          <div class="ns-card acct-tile"><h3>Continue shopping</h3><p class="ns-body-2">Go to the web store home page and start shopping.</p><a href="index.html">Shop now &rarr;</a></div>
+          <div class="ns-card acct-tile"><h3>Order status</h3><p class="ns-body-2">Track your orders and check all your previous orders.</p><a href="order-status.html">Track orders &rarr;</a></div>
+          <div class="ns-card acct-tile"><h3>My account</h3><p class="ns-body-2">Your billing details, shipping and contact addresses, and password.</p><a href="account.html">View account &rarr;</a></div>
+          <div class="ns-card acct-tile"><h3>Open orders</h3><p class="ns-body-2">Every line still open on your orders, with export to Excel.</p><a href="open-orders.html">View open orders &rarr;</a></div>
+          <div class="ns-card acct-tile"><h3>Usage report</h3><p class="ns-body-2">Your usage report for a date range.</p><a href="usage-report.html">View report &rarr;</a></div>
+          <div class="ns-card acct-tile"><h3>Shipped orders</h3><p class="ns-body-2">Orders shipped to you for a date range.</p><a href="shipped-orders.html">View shipped orders &rarr;</a></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- ===================== SITE FOOTER (shared on every page) ===================== -->
+<footer class="ns-footer">
+  <div class="ns-container ns-footer__main">
+    <div class="ns-footer__brand">
+      <span class="ns-logo"><span class="ns-logo__mark">NSI</span><span class="ns-logo__name">NU-SOURCE, INC.</span></span>
+      <span class="ns-footer__address">4629 S. 33rd Street<br>Phoenix, AZ 85040</span>
+      <a class="ns-footer__phone" href="tel:8779748500">(877) 974-8500</a>
+    </div>
+    <div class="ns-footer__col">
+      <span class="ns-footer__title">Shop</span>
+      <a href="category.html?code=TAPE">Tapes</a>
+      <a href="category.html?code=PCB">PCB &amp; Laboratory Supplies</a>
+      <a href="category.html?code=Aerospace">Aerospace Products</a>
+      <a href="category.html?code=CLNROOM">Clean Room Supplies</a>
+      <a href="category.html?code=DESPWOOD">Medical</a>
+      <a href="category.html?code=SUPPLIES">Office &amp; Warehouse Supplies</a>
+    </div>
+    <div class="ns-footer__col">
+      <span class="ns-footer__title">Customer tools</span>
+      <a href="quick-order.html">Quick Order</a>
+      <a href="products.html?searchType=cert">Certificate by Lot #</a>
+      <a href="products.html?searchType=sds">SDS Search</a>
+      <a href="account.html#wishlist">Wish list</a>
+    </div>
+    <div class="ns-footer__col">
+      <span class="ns-footer__title">Account</span>
+      <a href="login.html">Sign in</a>
+      <a href="register.html">Create an account</a>
+      <a href="order-status.html">Order status</a>
+      <a href="contact.html">Contact us</a>
+    </div>
+  </div>
+  <div class="ns-container ns-footer__bottom">
+    <span>© NU-SOURCE, INC. All rights reserved.</span>
+    <span class="ns-footer__legal"><a href="terms.html">Terms &amp; Conditions</a><a href="terms.html#privacy">Privacy Policy</a><span>Online store powered by GreeneStep</span></span>
+  </div>
+</footer>
+<!-- =================== /SITE FOOTER =================== -->
+<script>
+/* NU-SOURCE shared page behaviour (header search tabs, mobile category menu).
+   The header and footer markup itself is static HTML in every page. */
+(function () {
+  'use strict';
+
+  function wireSearch() {
+    var form = document.querySelector('[data-ns-search]');
+    if (!form) return;
+    var input = form.querySelector('.ns-search__input');
+    var type = form.querySelector('input[name="searchType"]');
+    var tabs = form.querySelectorAll('.ns-search__mode');
+    function select(id) {
+      tabs.forEach(function (t) {
+        var on = t.getAttribute('data-mode') === id;
+        t.setAttribute('aria-selected', String(on));
+        if (on) { input.placeholder = t.getAttribute('data-placeholder'); type.value = id; }
+      });
+    }
+    tabs.forEach(function (t) { t.addEventListener('click', function () { select(t.getAttribute('data-mode')); input.focus(); }); });
+    var params = new URLSearchParams(location.search);
+    if (params.get('searchType')) select(params.get('searchType'));
+    if (params.get('q')) input.value = params.get('q');
+  }
+
+  function wireCatnav() {
+    var nav = document.querySelector('.ns-catnav');
+    var btn = document.querySelector('.ns-catnav__toggle');
+    if (!nav || !btn) return;
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  }
+
+  function wireMinicart() {
+    var box = document.querySelector('[data-minicart]');
+    if (!box) return;
+    var toggle = box.querySelector('[data-minicart-toggle]');
+    var panel = box.querySelector('.ns-minicart__panel');
+    toggle.setAttribute('role', 'button');
+    function set(open) {
+      panel.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+    toggle.addEventListener('click', function (e) { e.preventDefault(); set(panel.hidden); });
+    box.querySelector('[data-minicart-close]').addEventListener('click', function () { set(false); toggle.focus(); });
+    document.addEventListener('click', function (e) { if (!panel.hidden && !box.contains(e.target)) set(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { set(false); toggle.focus(); } });
+
+    /* Review-only: ?minicart=items opens the mini cart with sample lines; ?minicart=open opens it empty. */
+    var mode = new URLSearchParams(location.search).get('minicart');
+    if (mode === 'items') {
+      box.querySelector('[data-minicart-empty]').hidden = true;
+      box.querySelector('[data-minicart-full]').hidden = false;
+      box.querySelector('[data-minicart-count]').textContent = '6';
+      toggle.setAttribute('aria-label', 'Cart, 6 items');
+    }
+    if (mode) set(true);
+  }
+
+  /* Review-only: pages marked <body data-signed-in> show the signed-in header ("My account"),
+     as the header comment asks GreeneStep to do for signed-in customers. */
+  function signedInHeader() {
+    if (!document.body.hasAttribute('data-signed-in')) return;
+    var a = document.querySelector('.ns-account-nav a[href="login.html"]');
+    if (!a) return;
+    a.href = 'account.html';
+    a.querySelector('.ns-btn__label').textContent = 'My account';
+  }
+
+  function init() { wireSearch(); wireCatnav(); wireMinicart(); signedInHeader(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+</body>
+</html>
